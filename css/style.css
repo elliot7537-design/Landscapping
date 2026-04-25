@@ -964,6 +964,18 @@ ul { list-style: none; }
 }
 .footer-bottom p { font-size: .83rem; color: rgba(255,255,255,.5); }
 
+.footer-credit {
+  text-align: center;
+  padding: 10px 0 4px;
+  font-size: .78rem;
+  color: rgba(255,255,255,.35);
+}
+.footer-credit a {
+  color: rgba(255,255,255,.5);
+  transition: color var(--transition);
+}
+.footer-credit a:hover { color: var(--green-light); }
+
 .footer-bottom-links {
   display: flex;
   gap: 20px;
