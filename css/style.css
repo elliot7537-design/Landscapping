@@ -486,8 +486,8 @@ ul { list-style: none; }
   color: white;
 }
 .service-card--featured::before { display: none; }
-.service-card--featured h3,
-.service-card--featured p { color: rgba(255,255,255,.9); }
+.service-card.service-card--featured h3,
+.service-card.service-card--featured p { color: white; }
 .service-card--featured .service-icon { background: rgba(255,255,255,.15); color: white; }
 .service-card--featured .service-link { color: var(--gold); }
 .service-card--featured:hover { border-color: var(--green-light); }
@@ -661,9 +661,9 @@ ul { list-style: none; }
   border-color: var(--green-dark);
   color: white;
 }
-.testimonial-card--featured p,
-.testimonial-card--featured .testimonial-author strong,
-.testimonial-card--featured .testimonial-author span { color: rgba(255,255,255,.9); }
+.testimonial-card.testimonial-card--featured p,
+.testimonial-card.testimonial-card--featured .testimonial-author strong,
+.testimonial-card.testimonial-card--featured .testimonial-author span { color: white; }
 
 .stars { color: var(--gold); margin-bottom: 16px; letter-spacing: 2px; }
 
