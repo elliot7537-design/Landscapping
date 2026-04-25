@@ -95,20 +95,39 @@ function animateNumber(el) {
   requestAnimationFrame(step);
 }
 
-// Fade-in on scroll for cards
+// Fade-in on scroll for cards (staggered)
 const fadeEls = document.querySelectorAll('.service-card, .blog-card, .testimonial-card, .project-card, .why-item');
-fadeEls.forEach(el => { el.style.opacity = '0'; el.style.transform = 'translateY(24px)'; el.style.transition = 'opacity .5s ease, transform .5s ease'; });
+fadeEls.forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(28px)';
+  el.style.transition = 'opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1)';
+});
 
 const fadeObserver = new IntersectionObserver(entries => {
-  entries.forEach((entry, i) => {
+  entries.forEach(entry => {
     if (entry.isIntersecting) {
+      const siblings = Array.from(entry.target.parentElement.children);
+      const idx = siblings.filter(el => el.style.opacity === '0').indexOf(entry.target);
       setTimeout(() => {
         entry.target.style.opacity = '1';
         entry.target.style.transform = 'translateY(0)';
-      }, 80 * (Array.from(entry.target.parentElement.children).indexOf(entry.target)));
+      }, Math.max(0, idx) * 90);
       fadeObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.1 });
+
+fadeEls.forEach(el => fadeObserver.observe(el));
+
+// Scroll reveal for structural sections
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('revealed');
+      revealObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.12 });
 
-fadeEls.forEach(el => fadeObserver.observe(el));
+revealEls.forEach(el => revealObserver.observe(el));
